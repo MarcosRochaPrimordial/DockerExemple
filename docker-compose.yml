@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  db_backend:
+    driver: bridge
+
+services:
+  app:
+    container_name: node-container
+    build: C:/Users/marko/Documents/Projects/docker/app
+    command: npm start
+    ports:
+      - "3000:3000"
+    volumes:
+      - C:/Users/marko/Documents/Projects/docker/app:/usr/app
+    networks:
+      - db_backend
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    container_name: mysql-container
+    build: C:/Users/marko/Documents/Projects/docker/db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - C:/Users/marko/Documents/Projects/docker/db/data:/var/lib/mysql
+    networks:
+      - db_backend
