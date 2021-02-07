@@ -10,4 +10,4 @@ CREATE TABLE products (
     price decimal(10, 2)
 );
 
-INSERT INTO products VALUES (1, 'Leite', 6.45), (2, 'Nescau', 8.8);
+INSERT INTO products VALUES (null, 'Leite', 6.45), (null, 'Nescau', 8.8);

@@ -30,3 +30,17 @@ services:
       - C:/Users/marko/Documents/Projects/docker/db/data:/var/lib/mysql
     networks:
       - db_backend
+  web:
+    container_name: php-container
+    build: C:/Users/marko/Documents/Projects/docker/web
+    restart: always
+    ports:
+      - "8888:80"
+    volumes:
+      - C:/Users/marko/Documents/Projects/docker/web:/var/www/html
+    networks:
+      - db_backend
+    depends_on:
+      - app
+    links:
+      - app
